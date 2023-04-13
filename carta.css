@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    background-color: #6C26E5;
+    font-family: Verdana;
+    color: rgb(211, 211, 211);
+}
+h1 {
+    font-size: 60px;
+    margin-top: 3vh;
+}
+
+.escondido {
+    display: none;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(50, 50, 50, 0.4);
+    z-index: 1000;
+}
+
+#vitoria {
+    display: inherit;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    width: 30%;
+    height: 30%;
+    transform: translate(-50%, -50%);
+    background-color: #301166;
+    padding: 1.5%;
+    border-radius: 2%;
+    z-index: 1001;
+}
+
+#reiniciar {
+    background-color: #4CAF50;
+    border: none;
+    padding: 1.7vh 37px;
+    font-size: 18px;
+    /* font-weight: bold; */
+    cursor: pointer;
+    display: flex;
+    margin: auto;
+    margin-top: 4.5vh;
+    border-radius: 0.5em;
+    box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.5);
+}
+
+#tabuleiro {
+    display: grid;
+    margin: auto;
+    margin-top: 8vh;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 35px;
+    justify-content: center;
+    align-content: center;
+    height: 55%;
+    width: 50%;
+  }
+
+.linha {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.container {
+    width: 200px;
+    height: 200px;
+    perspective: 800px;
+}
+
+.container:hover > .carta {
+    cursor: pointer;
+}
+.carta {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    transition: transform 1500ms;
+    transform-style: preserve-3d;
+}
+
+.carta.virada {
+    transform: rotateY(-180deg);
+}
+
+
+@media screen and (max-width: 641px) {
+    #tabuleiro {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(7, 1fr);
+      }
+    .carta {
+      width: 45%;
+      padding-bottom: 45%;
+      margin: 2.5%;
+    }
+  }
+
+  
+.frente,
+.verso {
+    height: 100%;
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.5);
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.frente {
+    /* background-image: url(imagens/quadradovermelho.png);
+    background-position: center top;
+    background-size: cover; */
+    background-color: #E3C02B;
+}
+
+.verso {
+    transform: rotateY(-180deg);
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: center;
+    align-items: center; */
+    /* gap: 0.1rem; */
+    background-position: center top;
+    background-size: cover;
+}
