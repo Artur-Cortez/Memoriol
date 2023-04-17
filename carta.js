@@ -1,7 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    const input_usuario = document.querySelector('#input_usuario');
+    const spanElement = document.querySelector('#pontuacao-form span');
+    
+    input_usuario.addEventListener('keydown', function() {
+      if (input_usuario.value === '') {
+        spanElement.classList.remove('transformado');
+      } else {
+        spanElement.classList.add('transformado');
+      }
+    });
+
     const imagens = [];
 
-    for (let i = 1; i <= 14; i++) {
+    let numColunas = 2;
+    let numLinhas = 2;
+
+    for (let i = 1; i <= ((numColunas*numLinhas)/2); i++) {
         imagens.push(`assets/imagens/imagem${i}.jpg`);
       }
     
@@ -16,6 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var pontuacao = 0;
 
     const tabuleiro = document.getElementById('tabuleiro');
+    tabuleiro.style.gridTemplateColumns = `repeat(${numColunas}, 1fr)`;
+    tabuleiro.style.gridTemplateRows = `repeat(${numLinhas}, 1fr)`;
 
     const overlay = document.getElementById('overlay')
     
@@ -64,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         segundaCarta = this;
         jogadas++;
-        pontuacao += 300;
         document.getElementById("pontuacao-placar").innerHTML = pontuacao; 
         document.getElementById("jogadas").innerHTML = jogadas;
         checarPar();
@@ -73,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function checarPar() {
         if (primeiraCarta.dataset.valor === segundaCarta.dataset.valor) {
             paresCorretos += 1;
+            pontuacao += 70000;
             desabilitarCartas();
             
             setTimeout(() => {
@@ -82,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (paresCorretos === cartas.length / 2) {
 
                 setTimeout(() => {
+                    pontuacao = Math.floor(pontuacao/jogadas);
 			        document.getElementById("pontuacao").value = pontuacao;
                     overlay.style.display = 'block';
                     document.getElementById("pontuacao-placar").innerHTML = pontuacao; 
@@ -162,6 +180,7 @@ function embaralharCartas() {
             });
 
             setTimeout(() => {
+                pontuacao = Math.floor(pontuacao/jogadas);
                 document.getElementById("pontuacao-placar").innerHTML = pontuacao; 
                 document.getElementById("pontuacao").value = pontuacao;
                 overlay.style.display = 'block';
@@ -171,9 +190,38 @@ function embaralharCartas() {
             }, 1000);
         }
     });
-    xhr = new XMLHttpRequest();
-    xhr.open("POST", "enviar_pontuacao.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("pontuacao=" + pontuacao);
+
+    $.ajax({
+        url: "exibir_tabela.php",
+        method: "GET",
+        success: function(data) {
+            $('#tabelaResultados').html(data);
+            console.log(data);
+        },
+        error: function() {
+            // Caso ocorra algum erro na requisição, essa função será executada
+            alert("Erro ao carregar os dados.");
+        }
+    });
     
+    $('#pontuacao-form').submit(function(event) {
+        event.preventDefault(); // impede que o formulário seja enviado da maneira convencional
+
+        var form = $(this); // obtém o objeto do formulário
+        var formData = form.serialize(); // serializa os dados do formulário em uma string
+
+        $.ajax({
+            type: 'POST',
+            url: 'enviar_pontuacao.php', // substitua pelo nome do seu script PHP
+            data: formData,
+            success: function(response) {
+                // trata a resposta do servidor
+                console.log(response);
+            },
+            error: function(xhr, status, error) {
+                // trata erros de requisição
+                console.log(error);
+            }
+        });
+    });
 });

@@ -3,8 +3,8 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Recupera os valores enviados pelo formulário
-    $nome = $_POST["input_usuario"] ?? "";
-    $pontuacao = $_POST["pontuacao"] ?? "";
+    $nome = $_POST["input_usuario"];
+    $pontuacao = $_POST["pontuacao"];
 
     // Verifica se os valores são válidos
     if (!empty($nome) && is_numeric($pontuacao)) {
