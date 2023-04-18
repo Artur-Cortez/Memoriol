@@ -46,7 +46,7 @@ h2 {
     top: 20%;
     left: 50%;
     width: 50%;
-    height: auto;
+    height: 40%;
     transform: translateX(-50%);
     background-color: #301166;
     padding: 1.5%;
@@ -55,6 +55,7 @@ h2 {
 }
 
 #input_usuario {
+    position: relative;
     padding: 2.5%;
     background-color: #301166;
     border: 2px solid rgba(255, 255, 255, 0.25);
@@ -67,31 +68,27 @@ h2 {
     transition: 0.5s;
 }
 
-#pontuacao-form input:focus {
+
+#input_usuario:focus {
     border: 2px solid #4CAF50;
 }
 
 #pontuacao-form span {
     position: absolute;
     padding: 10px;
-    top: 40%;
-    left: 39.5%;
+    top: 50%;
+    left: 50%;
+    /* transform: translate(-50%, -50%); */
+    /* top: 40%;
+    left: 39.5%; */
     font-size: 1.2em;
     transform: translate(-50%, -50%);
     color: rgba(255, 255, 255, 0.25);
     pointer-events: none;
     transition: 0.5s;
 }
-#pontuacao-form span.transformado {
-    color: #4CAF50;
-    transform: translateX(-15px) translateY(-35px);
-    font-size: 1em;
-    padding: 0 10px;
-    background: #301166;
-    border-left: 1px solid #4CAF50;
-    border-right: 1px solid #4CAF50;
-    letter-spacing: 0.2em;
-}
+
+#pontuacao-form span.transformado,
 #pontuacao-form input:focus ~ span {
     color: #4CAF50;
     transform: translateX(-15px) translateY(-35px);

@@ -1,18 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    //elementos da tag form
     const input_usuario = document.querySelector('#input_usuario');
     const spanElement = document.querySelector('#pontuacao-form span');
     
-    input_usuario.addEventListener('keydown', function() {
-      if (input_usuario.value === '') {
-        spanElement.classList.remove('transformado');
-      } else {
-        spanElement.classList.add('transformado');
-      }
-    });
+    //detecção de qualquer mudança no valor do input
+      input_usuario.addEventListener('input', function() {
+        if (input_usuario.value === '') {
+          spanElement.classList.remove('transformado');
+          input_usuario.style.border = '2px solid rgba(255, 255, 255, 0.25)';     
+        } else {
+          spanElement.classList.add('transformado');
+          input_usuario.style.border = '2px solid #4CAF50';
+        }
+      });
 
     const imagens = [];
-
     let numColunas = 2;
     let numLinhas = 2;
 
