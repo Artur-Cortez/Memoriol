@@ -209,17 +209,23 @@ function embaralharCartas() {
     
     $('#pontuacao-form').submit(function(event) {
         event.preventDefault(); // impede que o formulário seja enviado da maneira convencional
-
+    
         var form = $(this); // obtém o objeto do formulário
         var formData = form.serialize(); // serializa os dados do formulário em uma string
-
+    
         $.ajax({
             type: 'POST',
-            url: 'enviar_pontuacao.php', // substitua pelo nome do seu script PHP
+            url: 'enviar_pontuacao.php', 
             data: formData,
             success: function(response) {
                 // trata a resposta do servidor
                 console.log(response);
+    
+                // extrai o nome do usuário da resposta
+                var nome = form.find('input[name="input_usuario"]').val();
+    
+                // atualiza a tabela
+                atualizarTabela(nome);
             },
             error: function(xhr, status, error) {
                 // trata erros de requisição
@@ -227,4 +233,28 @@ function embaralharCartas() {
             }
         });
     });
+    
+    // função para atualizar a tabela
+    function atualizarTabela(nome) {
+        $.ajax({
+          type: "POST",
+          url: "atualizar_tabela.php",
+          data: { nome: nome },
+          success: function(tabela) {
+            // atualiza a tabela na página
+            $("#tabela").html(tabela);
+            console.log('Tabela atualizada com sucesso')
+            console.log(tabela);
+          }
+        });
+      }
+    // atualiza a tabela no carregamento da página
+    $(document).ready(function() {
+        setInterval(function() {
+          atualizarTabela();
+        }, 500);
+      });
+  
+    
+    
 });
