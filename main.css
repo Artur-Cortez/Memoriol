@@ -46,13 +46,23 @@ h2 {
     top: 20%;
     left: 50%;
     width: 50%;
-    height: 40%;
+    height: auto;
     transform: translateX(-50%);
     background-color: #301166;
     padding: 1.5%;
     border-radius: 2%;
     z-index: 1001;
 }
+input[type="submit"] {
+    background-color: green;
+    color: white;
+    border-radius: 0.7vh;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  }
 
 #input_usuario {
     position: relative;
@@ -100,13 +110,13 @@ h2 {
     letter-spacing: 0.2em;
 }
 
-#tabelaResultados table{
-    margin: 0 auto;
+#tabela-placares{
+    margin: auto;
     text-align: center;
 }
 
-#tabela-resultados th, #tabela-resultados td {
-    padding: 30vh 0vh;
+#tabela-placares th, #tabela-placares td {
+    padding: 1vh 1vw;
 }  
 #reiniciar {
     background-color: #4CAF50;

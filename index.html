@@ -1,33 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="carta.css?v=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>Memoriol</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="main.css?v=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="assets/imagens/favicon.png">
+  <title>Memoriol</title>
 </head>
-<body>    
-    <h1>Memoriol</h1>
-    <div id='tabuleiro'></div>
-    <p>Jogadas: <span id="jogadas">0</span></p>
-    <button id="reiniciar">Restart</button>
-    <div id="overlay">
-    <div id="vitoria">
-        <h2>Voce venceu!</h2>
-        <p id="placar">Pontuação : <span id="pontuacao-placar">0</span></p>
-        <div class="input_coiso">
-        <form id="pontuacao-form">
-            <input type="text" id="input_usuario" name="input_usuario">
-            <span class="nick">NICK:</span>
-            <input type="hidden" id="pontuacao" name="pontuacao" value="">
-            <input type="submit" value="Enviar" id="enviar_pontuacao">
-        </form>
-        </div>
-        <div id="tabelaResultados"></div>
-    </div>
-    </div>
-    <script src="carta.js"></script>
+<body>
+
+  <h1>Memoriol</h1>
+  <div id='tabuleiro'></div>
+  <p>Jogadas: <span id="jogadas">0</span></p>
+  <button id="reiniciar">Restart</button>
+  <div id="overlay">
+  <div id="vitoria">
+
+    <h2>Voce venceu!</h2>
+    <p id="placar">Pontuação : <span id="pontuacao-placar">0</span></p>
+
+    <form id="form-nome" method="POST">
+      <span>Nome:</span>
+      <input type="text" id="input_usuario" name="input_usuario">
+      <input type="hidden" id="pontuacao" name="pontuacao" value="">
+      <input type="submit" value="Enviar">
+    </form>
+      
+    <table id="tabela-placares">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Pontuação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Aqui serão adicionados os nomes cadastrados no banco de dados -->
+      </tbody>
+    </table>
+  </div></div>
+  <script src="jogo.js">
+  </script>
 </body>
 </html>
