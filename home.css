@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    background-color: #6C26E5;
+    font-family: 'Poppins';
+    color: rgb(211, 211, 211);
+}
+h1 {
+    font-size: 80px;
+    font-weight: 400;
+}
+
+/* h2 {
+    margin-bottom: 3vh;
+    font-size: 4em;
+    text-align: center;
+} */
+
+#contador{
+    display: none;
+    font-size: 35px;
+    margin-left: 1.5vw;
+}
+.nav-top {
+    display: flex;
+    list-style: none;
+    background-color: #551EB3;
+    justify-content: space-between;
+    align-items: center;
+    height: 13vh;
+}
+
+.dropdown_button {
+    background-color: #301166;
+    color: white;
+    font-family: 'Poppins';
+    padding: 16px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown_content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+.escondido {
+    display: none;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(50, 50, 50, 0.4);
+    z-index: 1000;
+}
+
+#vitoria {
+    display: inherit;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: 50%;
+    height: auto;
+    transform: translateX(-50%);
+    background-color: #301166;
+    padding: 1.5%;
+    border-radius: 2%;
+    z-index: 1001;
+}
+input[type="submit"] {
+    background-color: green;
+    color: white;
+    border-radius: 0.7vh;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  }
+
+#input_usuario {
+    position: relative;
+    padding: 2.5%;
+    background-color: #301166;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    margin: 30px 0;
+    border-radius: 1vh;
+    outline: none;
+    color: #fff;
+    font-size: 1em;
+    position: relative;
+    transition: 0.5s;
+}
+
+
+#input_usuario:focus {
+    border: 2px solid #4CAF50;
+}
+
+#pontuacao-form span {
+    position: absolute;
+    padding: 10px;
+    top: 50%;
+    left: 50%;
+    /* transform: translate(-50%, -50%); */
+    /* top: 40%;
+    left: 39.5%; */
+    font-size: 1.2em;
+    transform: translate(-50%, -50%);
+    color: rgba(255, 255, 255, 0.25);
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+#pontuacao-form span.transformado,
+#pontuacao-form input:focus ~ span {
+    color: #4CAF50;
+    transform: translateX(-15px) translateY(-35px);
+    font-size: 1em;
+    padding: 0 10px;
+    background: #301166;
+    border-left: 1px solid #4CAF50;
+    border-right: 1px solid #4CAF50;
+    letter-spacing: 0.2em;
+}
+
+#tabela-placares{
+    margin: auto;
+    text-align: center;
+}
+
+#tabela-placares th, #tabela-placares td {
+    padding: 1vh 1vw;
+}  
+#reiniciar {
+    display: none;
+    background-color: transparent;
+    border: 4px solid rgb(211, 211, 211);
+    color: rgb(211, 211, 211);
+    padding: 1.3vh 2vw;
+    font-size: 35px;
+    cursor: pointer;
+    /* display: flex; */
+    margin: auto;
+    margin-right: 1.5vw;
+    border-radius: 0.5em;
+    box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.5);
+}
+
+#tabuleiro {
+    display: grid;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: auto;
+    grid-template-columns: repeat(var(--colunas), 1fr);
+    grid-template-rows: repeat(var(--linhas), 1fr);
+    gap: 4vh;
+    justify-content: center;
+    align-content: center;
+    height: 70%;
+    width: 50%;
+  }
+
+.linha {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.container {
+    width: 200px;
+    height: 200px;
+    perspective: 800px;
+}
+
+.container:hover > .carta {
+    cursor: pointer;
+}
+.carta {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    transition: transform 1500ms;
+    transform-style: preserve-3d;
+}
+
+.carta.virada {
+    transform: rotateY(-180deg);
+}
+
+
+@media screen and (max-width: 700px) {
+    #tabuleiro {
+        grid-template-columns: repeat(var(--linhas), 1fr);
+        grid-template-rows: repeat(var(--colunas), 1fr);
+      }
+    .carta {
+      width: 45%;
+      padding-bottom: 45%;
+      margin: 2.5%;
+    }
+  }
+
+  
+.frente,
+.verso {
+    height: 100%;
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.5);
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.frente {
+    background-color: #E3C02B;
+}
+
+.verso {
+    transform: rotateY(-180deg);
+    background-position: center top;
+    background-size: cover;
+}
