@@ -18,10 +18,11 @@ body {
     position: absolute;
     margin-top: 5vh;
     left: 50%;
-    font-size: 6em;
+    font-size: 96px;
     letter-spacing: 0.025em;
     transform: translateX(-50%);
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+    /* text-shadow: 2px 5px 2px rgba(0, 0, 0, 0.25); */
+    
 
     animation-name: aumentar;
     animation-duration: 1s;
@@ -33,9 +34,11 @@ body {
 
 @keyframes aumentar {
     from {
+        font-size: 6em;
         color: rgb(211, 211, 211);        
     }
     to {
+        font-size: 6.5em;
         color: #E6B032;
     }
 
@@ -104,14 +107,6 @@ input[type="submit"] {
     letter-spacing: 0.2em;
 }
 
-/* #tabela-placares{
-    margin: auto;
-    text-align: center;
-}
-
-#tabela-placares th, #tabela-placares td {
-    padding: 1vh 1vw;
-}   */
 #reiniciar {
     background-color: #4CAF50;
     border: none;
@@ -125,50 +120,3 @@ input[type="submit"] {
     border-radius: 0.5em;
     box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.5);
 } 
-
-/* .linha {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-.container {
-    width: 200px;
-    height: 200px;
-    perspective: 800px;
-}
-
-.container:hover > .carta {
-    cursor: pointer;
-}
-.carta {
-    height: 100%;
-    width: 100%;
-    position: relative;
-    transition: transform 1500ms;
-    transform-style: preserve-3d;
-}
-
-.carta.virada {
-    transform: rotateY(-180deg);
-}
-  
-.frente,
-.verso {
-    height: 100%;
-    width: 100%;
-    border-radius: 1rem;
-    box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.5);
-    position: absolute;
-    backface-visibility: hidden;
-}
-
-.frente {
-    background-color: #E3C02B;
-}
-
-.verso {
-    transform: rotateY(-180deg);
-    background-position: center top;
-    background-size: cover;
-} */
