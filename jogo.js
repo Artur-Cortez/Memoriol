@@ -16,8 +16,8 @@ input_usuario.addEventListener('input', function() {
 });
 
 const imagens = [];
-let numColunas = 2;
-let numLinhas = 2;
+let numLinhas = 3;
+let numColunas = 4;
 
 for (let i = 1; i <= ((numColunas*numLinhas)/2); i++) {
   imagens.push(`assets/imagens/imagem${i}.jpg`);
@@ -177,7 +177,7 @@ function reiniciarJogo() {
 // Função para fazer a requisição GET e atualizar a tabela
 function atualizarTabela() {
   const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'buscar.php', true);
+  xhr.open('GET', 'php/buscar.php', true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -213,7 +213,7 @@ function enviarFormulario() {
 
   // Cria uma nova solicitação assíncrona ao servidor
   const xhr = new XMLHttpRequest();
-  xhr.open('POST', 'inserir.php', true);
+  xhr.open('POST', 'php/inserir.php', true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4 && xhr.status === 200) {
